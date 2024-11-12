@@ -43,35 +43,38 @@ const Postfeed = ({ posts }) => {
   return (
     <PostfeedWrapper>
       {/* Form for creating new post */}
-      <form onSubmit={handlePostSubmit}>
-        <div>
-          <input
-            type="text"
-            name="userId"
-            placeholder="User ID"
-            value={newPost.userId}
-            onChange={handleInputChange}
-          />
-        </div>
-        <div>
-          <input
-            type="text"
-            name="imageUrl"
-            placeholder="Image URL"
-            value={newPost.imageUrl}
-            onChange={handleInputChange}
-          />
-        </div>
-        <div>
-          <textarea
-            name="caption"
-            placeholder="Caption"
-            value={newPost.caption}
-            onChange={handleInputChange}
-          />
-        </div>
-        <button type="submit">Create Post</button>
-      </form>
+      <form onSubmit={handlePostSubmit} className="post-form">
+    <div className="form-group">
+      <input
+        type="text"
+        name="userId"
+        placeholder="User ID"
+        value={newPost.userId}
+        onChange={handleInputChange}
+        className="input-user-id"
+      />
+    </div>
+    <div className="form-group">
+      <input
+        type="text"
+        name="imageUrl"
+        placeholder="Image URL"
+        value={newPost.imageUrl}
+        onChange={handleInputChange}
+        className="input-image-url"
+      />
+    </div>
+    <div className="form-group">
+      <textarea
+        name="caption"
+        placeholder="Caption"
+        value={newPost.caption}
+        onChange={handleInputChange}
+        className="textarea-caption"
+      />
+    </div>
+    <button type="submit" className="btn-submit">Create Post</button>
+  </form>
 
       {/* Display list of posts */}
       {postList.map((post) => (
