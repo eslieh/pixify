@@ -1,6 +1,7 @@
 import React from 'react';
 import Sidebar from '../components/Sidebar/Sidebar';
-import Postfeed from '../components/Postfeed/Postfeed'
+import Postfeed from '../components/Postfeed/Postfeed';
+import Rightbar from '../components/Rightbar/Rightbar';
 function  Home() {
     
   return(
@@ -9,7 +10,10 @@ function  Home() {
         <section className='homefeed'>
             <Postfeed/>
         </section>
-  </div>
+        <section className='rightbar'>
+        <Rightbar />
+        </section>
+    </div>
   )
 }
   ;
