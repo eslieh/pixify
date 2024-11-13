@@ -1,15 +1,15 @@
 import styled from "styled-components";
 
 export const SidebarWrapper = styled.div`
-  width: 250px; /* Sidebar width */
-  height: 100vh; /* Full viewport height */
-  background-color: #333; /* Dark background color */
-  color: white; /* Text color */
-  padding: 20px; /* Inner padding */
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); /* Shadow effect */
+width: 25%;
+    height: 84vh;
+    background-color: #33333300;
+    color: #000000;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: none;
 
   .nav-container {
     width: 100%;
@@ -23,9 +23,9 @@ export const SidebarWrapper = styled.div`
     text-align: center;
 
     .profile_image {
-      width: 80px;
+      width: 100%;
       height: auto;
-      border-radius: 50%; /* Make the logo circular if desired */
+      border-radius: 50%;
     }
   }
 
@@ -37,13 +37,13 @@ export const SidebarWrapper = styled.div`
   }
 
   .nav-link {
-    color: #ddd; /* Light text color */
+       color: black;
     text-decoration: none;
-    margin: 10px 0; /* Spacing between links */
+    margin: 2px 0;
     font-size: 16px;
     padding: 8px 15px;
     width: 100%;
-    text-align: center;
+    text-align: start;
     border-radius: 8px;
     transition: background 0.3s;
 
@@ -53,7 +53,7 @@ export const SidebarWrapper = styled.div`
     }
 
     &.active {
-      background-color: #555; /* Highlight active link */
+      background-color: black; /* Highlight active link */
       color: #fff;
     }
   }
