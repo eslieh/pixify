@@ -15,7 +15,13 @@ width: 25%;
     width: 100%;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: c
+Delta compression using up to 8 threads
+Compressing objects: 100% (4/4), done.
+Writing objects: 100% (4/4), 347 bytes | 347.00 KiB/s, done.
+Total 4 (delta 3), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas: 100% (3/3), completed with 3 local objects.
+To github.com:eslieh/pixify.gitenter;
   }
 
   .logo-container {

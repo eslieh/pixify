@@ -8,9 +8,12 @@ const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     
-    console.log('Username:', username);
-    console.log('Password:', password);
-    console.log('Hello');
+    const user = {
+      username: username,
+      password: password,
+    };
+
+    console.log('User:', user);
   };
 
   return (
