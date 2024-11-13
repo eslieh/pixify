@@ -1,0 +1,66 @@
+.auth-container {
+    width: 400px;
+    margin: 50px auto;
+    background-color: #f7f7f7;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+  }
+  
+  .auth-tabs {
+    display: flex;
+    justify-content: space-around;
+    background-color: #e0e0e0;
+    padding: 10px;
+  }
+  
+  .tab-button {
+    background-color: transparent;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: color 0.3s;
+  }
+  
+  .tab-button:hover {
+    color: #007bff;
+  }
+  
+  .tab-button.active {
+    font-weight: bold;
+    color: #007bff;
+    border-bottom: 2px solid #007bff;
+  }
+  
+  .auth-form {
+    padding: 30px;
+  }
+  .inputGroup {
+    display: grid;
+    gap: 5px;
+}
+.inputGroup input {
+    background: white;
+    border: none;
+    box-shadow: 0 0 4px gray;
+    padding: 9px;
+    outline: none;
+    border-radius: 9px;
+}
+button.button {
+    margin-top: 9px;
+    padding: 9px;
+    width: 40%;
+    border-radius: 11px;
+    font-size: 15px;
+    color: white;
+    background: black;
+    border: none;
+    transition: all ease 0.8s;
+}
+button.button:hover {
+    color: white;
+    background: fuchsia;
+    transition: all ease 0.8s;
+}

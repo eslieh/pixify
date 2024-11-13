@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Right } from './Myprofile.styled';
+import { Right } from './Rightbar.styled';
 
 const Rightbar = () => (
  <Right>
@@ -12,4 +12,4 @@ Rightbar.propTypes = {};
 
 Rightbar.defaultProps = {};
 
-export default Rightbar;
+export default Rightbar;    
