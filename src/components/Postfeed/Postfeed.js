@@ -3,10 +3,8 @@ import PropTypes from 'prop-types';
 import { PostfeedWrapper } from './Postfeed.styled';
 
 const Postfeed = ({ posts }) => {
-  // State to hold the posts
-  const [postList, setPostList] = useState(posts);
+  const [postList, setPostList] = useState(posts || []);
 
-  // State to handle form inputs for new post
   const [newPost, setNewPost] = useState({
     userId: '',
     profileImage: '',
@@ -18,7 +16,6 @@ const Postfeed = ({ posts }) => {
     commentCount: 0,
   });
 
-  // Handle changes in the form fields
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setNewPost((prevPost) => ({
@@ -27,23 +24,19 @@ const Postfeed = ({ posts }) => {
     }));
   };
 
-  // Handle post form submission
   const handlePostSubmit = (e) => {
     e.preventDefault();
     if (newPost.userId && newPost.imageUrl && newPost.caption) {
-      // Add new post to the list
       setPostList((prevList) => [
         ...prevList,
-        { ...newPost, id: String(Date.now()) }, // Unique ID
+        { ...newPost, id: String(Date.now()), comments: [] },
       ]);
-      // Clear form after submission
       setNewPost({ userId: '', profileImage: '', username: '', fullName: '', imageUrl: '', caption: '', likeCount: 0, commentCount: 0 });
     } else {
       alert('Please fill in all the fields');
     }
   };
 
-  // Handle like button click
   const handleLikeClick = (postId) => {
     setPostList((prevList) =>
       prevList.map((post) =>
@@ -52,10 +45,49 @@ const Postfeed = ({ posts }) => {
     );
   };
 
+  const handleAddComment = (postId, commentText) => {
+    setPostList((prevList) =>
+      prevList.map((post) =>
+        post.id === postId
+          ? {
+              ...post,
+              comments: [...(post.comments || []), { id: String(Date.now()), text: commentText }],
+            }
+          : post
+      )
+    );
+  };
+
+  const handleEditComment = (postId, commentId, newText) => {
+    setPostList((prevList) =>
+      prevList.map((post) =>
+        post.id === postId
+          ? {
+              ...post,
+              comments: post.comments.map((comment) =>
+                comment.id === commentId ? { ...comment, text: newText } : comment
+              ),
+            }
+          : post
+      )
+    );
+  };
+
+  const handleDeleteComment = (postId, commentId) => {
+    setPostList((prevList) =>
+      prevList.map((post) =>
+        post.id === postId
+          ? {
+              ...post,
+              comments: post.comments.filter((comment) => comment.id !== commentId),
+            }
+          : post
+      )
+    );
+  };
+
   return (
     <PostfeedWrapper>
-      <h1>Feeds</h1>
-
       {/* Form for creating new post */}
       <form onSubmit={handlePostSubmit} className="post-form">
         <div className="form-group">
@@ -95,7 +127,7 @@ const Postfeed = ({ posts }) => {
             placeholder="Full Name"
             value={newPost.fullName}
             onChange={handleInputChange}
-            className="input-full-name"
+            className="input-fullname"
           />
         </div>
         <div className="form-group">
@@ -134,11 +166,32 @@ const Postfeed = ({ posts }) => {
           <img src={post.imageUrl} alt="Post" className="post-image" />
           <div className="post-stats">
             <span className="likes">Likes: {post.likeCount}</span>
-            <span className="comments">Comments: {post.commentCount}</span>
+            <span className="comments">Comments: {post.comments.length}</span>
           </div>
-          <button onClick={() => handleLikeClick(post.id)} className="btn-like">
-            Like
-          </button>
+          <button onClick={() => handleLikeClick(post.id)} className="btn-like">Like</button>
+
+          {/* Comment section */}
+          <div className="comment-section">
+            <input
+              type="text"
+              placeholder="Add a comment..."
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' && e.target.value.trim()) {
+                  handleAddComment(post.id, e.target.value.trim());
+                  e.target.value = ''; // Clear input
+                }
+              }}
+            />
+            <ul className="comment-list">
+              {(post.comments || []).map((comment) => (
+                <li key={comment.id} className="comment-item">
+                  <span>{comment.text}</span>
+                  <button onClick={() => handleEditComment(post.id, comment.id, comment.text)}>Edit</button>
+                  <button onClick={() => handleDeleteComment(post.id, comment.id)}>Delete</button>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       ))}
     </PostfeedWrapper>
@@ -151,14 +204,20 @@ Postfeed.propTypes = {
       id: PropTypes.string.isRequired,
       userId: PropTypes.string.isRequired,
       profileImage: PropTypes.string,
-      username: PropTypes.string,
-      fullName: PropTypes.string,
+      username: PropTypes.string.isRequired,
+      fullName: PropTypes.string.isRequired,
       imageUrl: PropTypes.string.isRequired,
       caption: PropTypes.string.isRequired,
       likeCount: PropTypes.number,
       commentCount: PropTypes.number,
+      comments: PropTypes.arrayOf(
+        PropTypes.shape({
+          id: PropTypes.string.isRequired,
+          text: PropTypes.string.isRequired,
+        })
+      ),
     })
-  ).isRequired,
+  ),
 };
 
 Postfeed.defaultProps = {
@@ -173,6 +232,7 @@ Postfeed.defaultProps = {
       caption: 'This is a placeholder post.',
       likeCount: 0,
       commentCount: 0,
+      comments: [],
     },
   ],
 };
