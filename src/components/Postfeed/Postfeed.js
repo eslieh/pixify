@@ -130,8 +130,8 @@ const Postfeed = ({ posts }) => {
               <span className="full-name">{post.fullName}</span>
             </div>
           </div>
-          <img src={post.imageUrl} alt="Post" className="post-image" />
           <p className="caption">{post.caption}</p>
+          <img src={post.imageUrl} alt="Post" className="post-image" />
           <div className="post-stats">
             <span className="likes">Likes: {post.likeCount}</span>
             <span className="comments">Comments: {post.commentCount}</span>

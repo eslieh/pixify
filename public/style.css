@@ -42,7 +42,16 @@ form.post-form {
     width: 93%;
     margin: 5px;
     border-radius: 20px;
-    height: 32vh;
+    height: fit-content;
+}
+img.profile-image {
+    width: 53px;
+    height: 53px;
+    border-radius: 45px;
+}
+.user-details {
+    display: grid;
+    gap: 5px;
 }
 .form-group input {
     width: 97%;
@@ -82,4 +91,9 @@ button.btn-submit:hover {
     background: #ff00c2;
     color: black;
     transition: all ease 0.8s;
+}
+.post-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }

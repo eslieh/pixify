@@ -7,8 +7,7 @@ function Auth(){
         <>
         <Login/>
         <Signup/>
-        </>
-        
+        </>   
     )
 };
 
