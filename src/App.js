@@ -1,9 +1,10 @@
 // App.js
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Sidebar from './components/Sidebar/Sidebar';
-import Feeds from './components/Feeds';
-import HomePage from './pages/HomePage';
-import ProfilePage from './pages/ProfilePage';
+import Postfeed from './components/Postfeed/Postfeed';
+import Home from './pages/Home';
+import Profile from './pages/Profile';
+
 
 function App() {
   return (
@@ -11,8 +12,8 @@ function App() {
       <div className="App">
         <Sidebar />
         <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/profile" element={<ProfilePage />} />
+          <Route path="/" element={<Home />} />
+          <Route path="/profile" element={<Profile />} />
         </Routes>
       </div>
     </Router>
