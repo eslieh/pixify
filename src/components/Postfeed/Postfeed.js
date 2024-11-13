@@ -166,10 +166,10 @@ Postfeed.defaultProps = {
     {
       id: '1',
       userId: 'user123',
-      profileImage: 'https://via.placeholder.com/50',
+      profileImage: 'https://i.pinimg.com/280x280_RS/c8/37/58/c837582c45eed0dcf2b12dee2952e8de.jpg',
       username: 'user123',
       fullName: 'John Doe',
-      imageUrl: 'https://via.placeholder.com/150',
+      imageUrl: 'https://i.pinimg.com/736x/1e/6b/29/1e6b29b276061703902ce36e1310cfc2.jpg',
       caption: 'This is a placeholder post.',
       likeCount: 0,
       commentCount: 0,
