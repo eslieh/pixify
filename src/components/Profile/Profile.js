@@ -1,30 +1,63 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Profile.styled.js";
 
 const Profile = () => {
-   const user = {
-      profilepic: "https://via.placeholder.com/150",
+   const [user, setUser] = useState({
+      profilePic: "https://via.placeholder.com/150",
       name: "John Doe",
       email: "john.doe@example.com",
       bio: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
       followers: 0,
       following: 0,
+   });
+
+   const [isEditing, setIsEditing] = useState(false);
+   const [editableUser, setEditableUser] = useState({ ...user });
+
+   const handleEditToggle = () => {
+      setIsEditing(!isEditing);
    };
 
-   const handleLogout = () => {
-      console.log("Logged out!");
+   const handleInputChange = (e) => {
+      const { name, value } = e.target;
+      setEditableUser({ ...editableUser, [name]: value });
+   };
+
+   const handleSave = () => {
+      setUser({ ...editableUser });
+      setIsEditing(false);
    };
 
    return (
       <div className="profile-container">
          <div className="profile-header">
-            <img
-               src={user.profilePic}
-               alt="Profile"
-               className="profile-pic"
+            {isEditing ? (
+               <input
+                  type="text"
+                  name="profilePic"
+                  value={editableUser.profilePic}
+                  onChange={handleInputChange}
+                  placeholder="Profile Picture URL"
                />
+            ) : (
+               <img
+                  src={user.profilePic}
+                  alt="Profile"
+                  className="profile-pic"
+               />
+            )}
+
+            {isEditing ? (
+               <input
+                  type="text"
+                  name="name"
+                  value={editableUser.name}
+                  onChange={handleInputChange}
+               />
+            ) : (
                <h2>{user.name}</h2>
-               <p>{user.email}</p>
+            )}
+            <p>{user.email}</p>
          </div>
 
          <div className="bio-section">
@@ -36,7 +69,13 @@ const Profile = () => {
             </div>
          </div>
 
-         <button className="logout-btn" onClick={handleLogout}>Logout</button>
+         {isEditing ? (
+            <button className="save-btn" onClick={handleSave}>Save</button>
+         ) : (
+            <button className="edit-btn" onClick={handleEditToggle}>Edit Profile</button>
+         )}
+
+         <button className="logout-btn" onClick={() => console.log("Logged out!")}>Logout</button>
       </div>
    );
 };
