@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 import './Login.styled.js';  
 
 const Login = () => {
@@ -20,6 +19,12 @@ const Login = () => {
   return (
     <div className="container">
       <div className="card">
+        {/* Logo added here */}
+        <img 
+          src="./Pixify.png" 
+          alt="Pixify Logo" 
+          className="logo"
+        />
         <h2 className="header">Login</h2>
         <form onSubmit={handleSubmit} className="form">
           <div className="inputGroup">
@@ -44,7 +49,7 @@ const Login = () => {
           </div>
           <button type="submit" className="button">Login</button>
         </form>
-        <p className="redirect">Don't have an account? <Link to="/signup">Sign up here</Link></p>
+        {/* Removed the sign-up redirect */}
       </div>
     </div>
   );

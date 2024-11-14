@@ -28,6 +28,12 @@ const Signup = () => {
   return (
     <div className="container">
       <div className="card">
+        {/* Logo added here */}
+        <img 
+          src="./components/Sidebar/Pixify.png" 
+          alt="Pixify Logo" 
+          className="logo"
+        />
         <h2 className="header">Sign Up</h2>
         <form onSubmit={handleSubmit} className="form">
           <div className="inputGroup">
