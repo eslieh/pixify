@@ -9,6 +9,7 @@ function App() {
       <div className="App">
         <>
         <Sidebar />
+        <Rightbar />
         </>
       </div>
     </Router>
