@@ -28,7 +28,7 @@ const Signup = () => {
   return (
     <div className="container">
       <div className="card">
-        {/* Logo added here */}
+        
         <img 
           src="./components/Sidebar/Pixify.png" 
           alt="Pixify Logo" 

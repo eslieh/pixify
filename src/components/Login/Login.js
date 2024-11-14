@@ -19,7 +19,7 @@ const Login = () => {
   return (
     <div className="container">
       <div className="card">
-        {/* Logo added here */}
+        
         <img 
           src="./Pixify.png" 
           alt="Pixify Logo" 
@@ -49,7 +49,7 @@ const Login = () => {
           </div>
           <button type="submit" className="button">Login</button>
         </form>
-        {/* Removed the sign-up redirect */}
+      
       </div>
     </div>
   );
