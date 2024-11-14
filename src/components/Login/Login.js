@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import './Login.styled.js';  
 
 const Login = () => {
@@ -43,6 +44,7 @@ const Login = () => {
           </div>
           <button type="submit" className="button">Login</button>
         </form>
+        <p className="redirect">Don't have an account? <Link to="/signup">Sign up here</Link></p>
       </div>
     </div>
   );

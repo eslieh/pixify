@@ -7,8 +7,6 @@ const Signup = () => {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [profileUrl, setProfileUrl] = useState('');
-  const [followers, setFollowers] = useState(0);
-  const [following, setFollowing] = useState(0);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -22,8 +20,6 @@ const Signup = () => {
       fullName: fullName,
       password: password,
       profileUrl: profileUrl,
-      followers: followers,
-      following: following,
     };
 
     console.log('User:', user);
@@ -62,28 +58,6 @@ const Signup = () => {
               value={profileUrl}
               onChange={(e) => setProfileUrl(e.target.value)}
               className="input"
-            />
-          </div>
-          <div className="inputGroup">
-            <label htmlFor="followers" className="label">Followers</label>
-            <input
-              type="number"
-              id="followers"
-              value={followers}
-              onChange={(e) => setFollowers(e.target.value)}
-              className="input"
-              min="0"
-            />
-          </div>
-          <div className="inputGroup">
-            <label htmlFor="following" className="label">Following</label>
-            <input
-              type="number"
-              id="following"
-              value={following}
-              onChange={(e) => setFollowing(e.target.value)}
-              className="input"
-              min="0"
             />
           </div>
           <div className="inputGroup">
