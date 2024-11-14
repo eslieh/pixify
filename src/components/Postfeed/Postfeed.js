@@ -15,6 +15,8 @@ const Postfeed = ({ posts }) => {
     likeCount: 0,
     commentCount: 0,
   });
+  const [editingComment, setEditingComment] = useState(null);
+  const [editedText, setEditedText] = useState('');
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -26,12 +28,21 @@ const Postfeed = ({ posts }) => {
 
   const handlePostSubmit = (e) => {
     e.preventDefault();
-    if (newPost.userId && newPost.imageUrl && newPost.caption) {
+    if (newPost.userId && newPost.username && newPost.fullName && newPost.imageUrl && newPost.caption) {
       setPostList((prevList) => [
         ...prevList,
         { ...newPost, id: String(Date.now()), comments: [] },
       ]);
-      setNewPost({ userId: '', profileImage: '', username: '', fullName: '', imageUrl: '', caption: '', likeCount: 0, commentCount: 0 });
+      setNewPost({
+        userId: '',
+        profileImage: '',
+        username: '',
+        fullName: '',
+        imageUrl: '',
+        caption: '',
+        likeCount: 0,
+        commentCount: 0,
+      });
     } else {
       alert('Please fill in all the fields');
     }
@@ -51,26 +62,38 @@ const Postfeed = ({ posts }) => {
         post.id === postId
           ? {
               ...post,
-              comments: [...(post.comments || []), { id: String(Date.now()), text: commentText }],
+              comments: [
+                ...(post.comments || []),
+                { id: String(Date.now()), text: commentText },
+              ],
             }
           : post
       )
     );
   };
 
-  const handleEditComment = (postId, commentId, newText) => {
+  const handleEditComment = (postId, commentId) => {
+    const post = postList.find((p) => p.id === postId);
+    const comment = post.comments.find((c) => c.id === commentId);
+    setEditingComment({ postId, commentId });
+    setEditedText(comment.text);
+  };
+
+  const handleSaveComment = (postId, commentId) => {
     setPostList((prevList) =>
       prevList.map((post) =>
         post.id === postId
-
-    ...post,
+          ? {
+              ...post,
               comments: post.comments.map((comment) =>
-                comment.id === commentId ? { ...comment, text: newText } : comment
+                comment.id === commentId ? { ...comment, text: editedText } : comment
               ),
             }
           : post
       )
     );
+    setEditingComment(null);
+    setEditedText('');
   };
 
   const handleDeleteComment = (postId, commentId) => {
@@ -79,7 +102,9 @@ const Postfeed = ({ posts }) => {
         post.id === postId
           ? {
               ...post,
-              comments: post.comments.filter((comment) => comment.id !== commentId),
+              comments: post.comments.filter(
+                (comment) => comment.id !== commentId
+              ),
             }
           : post
       )
@@ -175,19 +200,34 @@ const Postfeed = ({ posts }) => {
             <input
               type="text"
               placeholder="Add a comment..."
+              className="input-comment"
               onKeyDown={(e) => {
                 if (e.key === 'Enter' && e.target.value.trim()) {
                   handleAddComment(post.id, e.target.value.trim());
-                  e.target.value = ''; // Clear input
+                  e.target.value = '';
                 }
               }}
             />
             <ul className="comment-list">
-              {(post.comments || []).map((comment) => (
+              {post.comments.map((comment) => (
                 <li key={comment.id} className="comment-item">
-                  <span>{comment.text}</span>
-                  <button onClick={() => handleEditComment(post.id, comment.id, comment.text)}>Edit</button>
-                  <button onClick={() => handleDeleteComment(post.id, comment.id)}>Delete</button>
+                  {editingComment?.commentId === comment.id ? (
+                    <>
+                      <input
+                        type="text"
+                        value={editedText}
+                        onChange={(e) => setEditedText(e.target.value)}
+                        className="input-edit-comment"
+                      />
+                      <button onClick={() => handleSaveComment(post.id, comment.id)} className="btn-save">Save</button>
+                    </>
+                  ) : (
+                    <>
+                      <span className="comment-text">{comment.text}</span>
+                      <button onClick={() => handleEditComment(post.id, comment.id)} className="btn-edit">Edit</button>
+                      <button onClick={() => handleDeleteComment(post.id, comment.id)} className="btn-delete">Delete</button>
+                    </>
+                  )}
                 </li>
               ))}
             </ul>
@@ -197,44 +237,4 @@ const Postfeed = ({ posts }) => {
     </PostfeedWrapper>
   );
 };
-
-Postfeed.propTypes = {
-  posts: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.string.isRequired,
-      userId: PropTypes.string.isRequired,
-      profileImage: PropTypes.string,
-      username: PropTypes.string.isRequired,
-      fullName: PropTypes.string.isRequired,
-      imageUrl: PropTypes.string.isRequired,
-      caption: PropTypes.string.isRequired,
-      likeCount: PropTypes.number,
-      commentCount: PropTypes.number,
-      comments: PropTypes.arrayOf(
-        PropTypes.shape({
-          id: PropTypes.string.isRequired,
-          text: PropTypes.string.isRequired,
-        })
-      ),
-    })
-  ),
-};
-
-Postfeed.defaultProps = {
-  posts: [
-    {
-      id: '1',
-      userId: 'user123',
-      profileImage: 'https://i.pinimg.com/280x280_RS/c8/37/58/c837582c45eed0dcf2b12dee2952e8de.jpg',
-      username: 'user123',
-      fullName: 'John Doe',
-      imageUrl: 'https://i.pinimg.com/736x/1e/6b/29/1e6b29b276061703902ce36e1310cfc2.jpg',
-      caption: 'This is a placeholder post.',
-      likeCount: 0,
-      commentCount: 0,
-      comments: [],
-    },
-  ],
-};
-
 export default Postfeed;
