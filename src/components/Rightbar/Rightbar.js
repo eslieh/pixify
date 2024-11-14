@@ -52,5 +52,5 @@ Rightbar.propTypes = {
 Rightbar.defaultProps = {
   suggestions: [],
 };
-
+console.log("test");
 export default Rightbar;
