@@ -62,8 +62,8 @@ const Postfeed = ({ posts }) => {
     setPostList((prevList) =>
       prevList.map((post) =>
         post.id === postId
-          ? {
-              ...post,
+
+    ...post,
               comments: post.comments.map((comment) =>
                 comment.id === commentId ? { ...comment, text: newText } : comment
               ),
