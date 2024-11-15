@@ -9,9 +9,10 @@ section.homefeed {
     background: #ffffff00;
     overflow: auto;
 }
+
 .sc-gtLWhw.jywoRK {
-    width: 21vw;
-    height: 79vh;
+    width: 100%;
+    height: 95vh;
     overflow: auto;
     background: linear-gradient(221deg, #ff00eb38, #fd00ff00);
     margin: 0%;

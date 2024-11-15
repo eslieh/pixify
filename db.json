@@ -5,8 +5,20 @@
       "fullnames": "Eslieh Victor",
       "password": "1234",
       "profile_url": "https://i.pinimg.com/280x280_RS/c8/37/58/c837582c45eed0dcf2b12dee2952e8de.jpg",
-      "followers": [],
+      "followers": [
+        "shirleen"
+      ],
       "following": []
+    },
+    {
+      "username": "shirleen",
+      "fullnames": "Shirleen Chebet",
+      "password": "1234",
+      "profile_url": "https://media-mba2-1.cdn.whatsapp.net/v/t61.24694-24/317752647_1067248607894611_3633853746302439633_n.jpg?ccb=11-4&oh=01_Q5AaIDd05vIJCE4Yw8vRXS9Hxv8MAbPrJsufNxXXNHKYw4GC&oe=6743D956&_nc_sid=5e03e0&_nc_cat=107",
+      "followers": [],
+      "following": [
+        "vick"
+      ]
     }
   ],
   "posts": [
@@ -17,7 +29,7 @@
       "profileImage": "https://i.pinimg.com/280x280_RS/c8/37/58/c837582c45eed0dcf2b12dee2952e8de.jpg",
       "caption": "Tesla",
       "imageUrl": "https://i.pinimg.com/736x/e7/2e/78/e72e78b9f2a7e305b9b12cab95b46952.jpg",
-      "likeCount": 2,
+      "likeCount": 3,
       "comments": []
     }
   ]
