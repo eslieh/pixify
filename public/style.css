@@ -105,3 +105,122 @@ span.username {
     font-weight: 800;
     font-size: 22px;
 }
+.userdata {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+}
+.nam-container {
+    display: grid;
+    gap: 5px;
+}
+img.profile-pic {
+    width: 47px;
+    border-radius: 35px;
+}
+.suggestions-list {
+    display: grid;
+    height: fit-content;
+    gap: 5px;
+}
+
+.suggestion {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 4px;
+    height: 48px;
+    background: #9b050500;
+    padding: 4px;
+    width: 83%;
+}
+.suggestion .user-details {
+    height: fit-content;
+    display: block;
+    gap: 2px;
+}
+p.username {
+    margin-top: 14px;
+    margin-bottom: -10px;
+    font-size: 16px;
+    font-weight: 500;
+}
+p.full-name {
+    font-size: 15px;
+    font-weight: 500;
+}
+button.btn-follow {
+    background: black;
+    border-radius: 15px;
+    padding: 8px;
+    color: white;
+    padding-left: 16px;
+    padding-right: 16px;
+    border: none;
+    transition: all ease 0.8s;
+}
+button.btn-follow:hover {
+    background: #ff00c2;
+    cursor: pointer;
+    transition: all ease 0.8s;
+}
+.profile-container {
+    width: 100%;
+    background: #ff00f269;
+    display: grid;
+    justify-content: center;
+    text-align: center;
+    padding: 28%;
+    margin: 6%;
+    border-radius: 23px;
+}.user-list {
+    display: grid;
+    gap: 5px;
+    padding: 8px;
+}
+img.user-profile-image {
+    width: 50px;
+    height: 50px;
+    border-radius: 32px;
+}
+
+.sc-fAUdSK.ftukUH {
+    display: grid;
+    place-content: center;
+    align-items: center;
+    width: 100%;
+}
+input.search-input {
+    padding: 11px;
+    border-radius: 25px;
+    padding-left: 20px;
+    border: none;
+    box-shadow: 0 0 15px gray;
+}
+button.search-button {
+    padding: 6px;
+    border-radius: 32px;
+    width: fit-content;
+    padding-left: 20px;
+    padding-right: 20px;
+    margin: 8px;
+    color: white;
+    background: black;
+    border: none;
+    transition: all ease 0.8s;
+}
+button.search-button:hover {
+    color: white;
+    background: rgb(255, 0, 221);
+    border: none;
+    transition: all ease 0.8s;
+    cursor: pointer;
+}
+.user-item {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+}
+.user-info {
+    display: grid;
+}

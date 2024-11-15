@@ -18,7 +18,7 @@ function Sidebar() {
           <NavLink to={"/Search"} className="nav-link">
             Search
           </NavLink>
-          <NavLink to={"/Myprofile"} className="nav-link">
+          <NavLink to={"/Profile"} className="nav-link">
             My Profile
           </NavLink>
         </div>

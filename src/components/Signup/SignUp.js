@@ -7,8 +7,18 @@ const Signup = () => {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [profileUrl, setProfileUrl] = useState('');
+  const [error, setError] = useState('');
+  const [success, setSuccess] = useState('');
 
-  const handleSubmit = (e) => {
+  // Function to set a cookie (just like in login)
+  const setCookie = (name, value, days) => {
+    const date = new Date();
+    date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
+    const expires = `expires=${date.toUTCString()}`;
+    document.cookie = `${name}=${value};${expires};path=/`;
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (password !== confirmPassword) {
       alert('Passwords do not match!');
@@ -22,7 +32,35 @@ const Signup = () => {
       profileUrl: profileUrl,
     };
 
-    console.log('User:', user);
+    try {
+      // Send a POST request using fetch
+      const response = await fetch('http://localhost:5000/api/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(user),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        setSuccess(data.message || 'Account created successfully!');
+        setError('');
+        
+        // Optionally, set the username in a cookie for 7 days
+        setCookie('username', data.user.username, 7);
+        
+        // Redirect or navigate to login or home page after signup
+        window.location.href = '/';
+      } else {
+        setError(data.message || 'An error occurred while signing up');
+        setSuccess('');
+      }
+    } catch (err) {
+      setError('Something went wrong. Please try again later.');
+      setSuccess('');
+    }
   };
 
   return (
@@ -35,6 +73,11 @@ const Signup = () => {
           className="logo"
         />
         <h2 className="header">Sign Up</h2>
+        
+        {/* Show error or success messages */}
+        {error && <p className="error">{error}</p>}
+        {success && <p className="success">{success}</p>}
+        
         <form onSubmit={handleSubmit} className="form">
           <div className="inputGroup">
             <label htmlFor="username" className="label">Username</label>
@@ -44,6 +87,7 @@ const Signup = () => {
               value={username}
               onChange={(e) => setUsername(e.target.value)}
               className="input"
+              required
             />
           </div>
           <div className="inputGroup">
@@ -54,6 +98,7 @@ const Signup = () => {
               value={fullName}
               onChange={(e) => setFullName(e.target.value)}
               className="input"
+              required
             />
           </div>
           <div className="inputGroup">
@@ -64,6 +109,7 @@ const Signup = () => {
               value={profileUrl}
               onChange={(e) => setProfileUrl(e.target.value)}
               className="input"
+              required
             />
           </div>
           <div className="inputGroup">
@@ -74,6 +120,7 @@ const Signup = () => {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               className="input"
+              required
             />
           </div>
           <div className="inputGroup">
@@ -84,6 +131,7 @@ const Signup = () => {
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
               className="input"
+              required
             />
           </div>
           <button type="submit" className="button">Sign Up</button>
