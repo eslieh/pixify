@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { useRouteError } from 'react-router-dom';
 import Sidebar from '../components/Sidebar/Sidebar';
 function Errorpage(){
